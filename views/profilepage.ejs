@@ -11,14 +11,18 @@
     <!-- Custom CSS -->
     <link href="/styles/profilepage.css" rel="stylesheet">
 </head>
-
+<style>
+    h3{
+        padding: 1em;
+    }
+</style>
 <body>
     <%- include('partials/navbar') %>
 
         <div class="container mt-5">
             <h1>Welcome to Your Profile</h1>
-            <p>Hello, <%= username %>!</p>
-            <!-- Add more profile information here -->
+            <h3> <%= user.username %></h3>
+            <h3>Ti si <%= user.user_id %>. korisnik stranice</h3>
         </div>
 
 </body>

@@ -13,7 +13,7 @@ exports.profilepage = async (req, res) => {
         }
 
         // Render the profile page with user data
-        res.render("profilepage", { title: "Profile Page", username: user.username });
+        res.render("profilepage", { title: "Profile Page", user: user });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'An error occurred while rendering the profile page' });
