@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const authRoutes = require('./routes/authRoutes');
 const profileRoutes = require('./routes/profileRoutes');
 const cookieParser = require('cookie-parser');
+const verifyToken = require('./middleware/authMiddleware');
 
 const app = express();
 
@@ -28,6 +29,8 @@ app.get("/", (req, res) => {
 app.get("/register", (req, res) => {
     res.render("register", { title: "Register" });
 });
+
+// Login route with middleware to check if user is already logged in
 
 app.get("/login", (req, res) => {
     res.render("login", { title: "Login" });

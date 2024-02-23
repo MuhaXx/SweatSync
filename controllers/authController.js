@@ -59,8 +59,7 @@ exports.login = async (req, res) => {
         }
 
         // Generate JWT token
-        const token = generateToken(user.id);
-
+        const token = generateToken(user.user_id);
         // Set JWT token as HTTP-only cookie
         res.cookie('jwt', token, {
             expires: new Date(Date.now() + parseInt(process.env.JWT_COOKIE_EXPIRES)),
@@ -69,7 +68,7 @@ exports.login = async (req, res) => {
         });
 
         // Redirect to profile page with custom title
-        res.redirect(`/profile?username=${user.name}&title=Login`);
+        res.redirect(`/profile?username=${user.username}&title=Login`);
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'An error occurred while logging in' });

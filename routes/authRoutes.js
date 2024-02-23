@@ -8,6 +8,10 @@ router.post('/register', (req, res) => {
     authController.register(req, res, 'Register');
 });
 
+router.get('/login', verifyToken, (req, res) => {
+    res.send('Already logged in');
+});
+
 // Login route
 router.post('/login', (req, res) => {
     authController.login(req, res, 'Login');
@@ -15,5 +19,7 @@ router.post('/login', (req, res) => {
 
 // Logout route
 router.get('/logout', authController.logout);
+
+
 
 module.exports = router;
