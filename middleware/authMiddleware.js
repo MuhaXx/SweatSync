@@ -6,7 +6,6 @@ dotenv.config({ path: '../.env' });
 
 const verifyToken = (req, res, next) => {
     const token = req.cookies.jwt;
-
     if (!token) {
         console.log('Unauthorised access, token is missing!');
         return res.redirect('/login'); // Redirect to login page if token is missing
@@ -19,8 +18,8 @@ const verifyToken = (req, res, next) => {
 
         // If token is valid, set user data in request object for further use
         req.user = decoded;
-         // Move to the next middleware or route handler
-         next();
+        // Move to the next middleware or route handler
+        next();
     });
 };
 

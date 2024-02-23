@@ -1,11 +1,19 @@
+// controllers/profileController.js
+const userModel = require('../models/userModel');
+
 exports.profilepage = async (req, res) => {
     try {
-        // Fetch user data or any necessary data for the profile page
-        // For example:
-        const username = req.query.username; // Assuming you are passing the username as a query parameter
+        console.log(req.user.id);
+        // Fetch user data using user ID from the token
+        const userId = req.user.id; // Access user ID from request object
+        const user = await userModel.getUserById(userId);
 
-        // Render the profile page and pass the title variable
-        res.render("profilepage", { title: "Profile Page", username: username });
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Render the profile page with user data
+        res.render("profilepage", { title: "Profile Page", username: user.username });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'An error occurred while rendering the profile page' });
