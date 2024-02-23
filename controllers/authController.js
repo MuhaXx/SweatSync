@@ -14,8 +14,10 @@ const generateToken = (userId) => {
 
 exports.register = async (req, res) => {
     // Extract data from request body
-    const { username, email, password } = req.body;
-
+    const { username, email, password, password_confirm } = req.body;
+        if (password != password_confirm) {
+            return res.status(401).send({ error: 'Passwords do not match.'});``
+        }
     try {
         // Hash password
         const hashedPassword = await bcrypt.hash(password, 10);
