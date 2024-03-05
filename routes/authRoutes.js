@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const authController = require('../controllers/authController');
-const verifyToken = require('../middleware/authMiddleware'); // Import the middleware
+const verifyToken = require('../middleware/authMiddleware');
 
 // Register route
 router.post('/register', (req, res) => {
@@ -19,7 +19,5 @@ router.post('/login', (req, res) => {
 
 // Logout route
 router.get('/logout', authController.logout);
-
-
 
 module.exports = router;

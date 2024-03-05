@@ -37,3 +37,21 @@ exports.getUserById = async (userId) => {
         });
     });
 };
+
+exports.updateUserInfo = async (userId, userInfo) => {
+    const { username, email, age, gender, weight, height, experience } = userInfo;
+    
+    return new Promise((resolve, reject) => {
+        db.query(
+            'UPDATE user SET username = ?, email = ?, age = ?, gender = ?, weight = ?, height = ?, experience = ? WHERE user_id = ?',
+            [username, email, age, gender, weight, height, experience, userId],
+            (error, results) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(results);
+                }
+            }
+        );
+    });
+};

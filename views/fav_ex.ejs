@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorite Exercises</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <style>
+        /* Add custom styles here */
+    </style>
+</head>
+<body>
+    <%- include('partials/navbar') %>
+    <header>
+        <h1>Favorite Exercises</h1>
+    </header>
+    <main class="container mt-5">
+        <div id="favorite-exercises-list" class="row">
+            
+        </div>
+    </main>
+
+    <script>
+        fetch('/profile/favorite-exercises', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            const favoriteExercisesList = document.getElementById('favorite-exercises-list');
+
+            if (data.length > 0) {
+                data.forEach(exercise => {
+                    const exerciseItem = `
+                        <div class="col-md-6">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">${exercise.type}</h5>
+                                    <p class="card-text">Video Link: ${exercise.video_link}</p>
+                                    <p class="card-text">Weight: ${exercise.weight}</p>
+                                    <p class="card-text">Reps: ${exercise.reps}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    favoriteExercisesList.innerHTML += exerciseItem;
+                });
+            } else {
+                favoriteExercisesList.innerHTML = '<p>No favorite exercises found.</p>';
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching favorite exercises:', error);
+        });
+    </script>
+</body>
+</html>

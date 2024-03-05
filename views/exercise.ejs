@@ -1,24 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <title>
+        <%= title %>
+    </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
+
 <body>
     <%- include('partials/navbar') %>
-    <div class="container mt-5">
-        <h1>All Exercises</h1>
-        <% if (exercises.length > 0) { %>
-            <ul class="list-group">
-                <% exercises.forEach((exercise) => { %>
-                    <li class="list-group-item"><%= exercise.type %> - <%= exercise.video_link %> - Weight: <%= exercise.weight %> Reps: <%= exercise.reps %></li>
-                <% }); %>
-            </ul>
-        <% } else { %>
-            <p>No exercises found</p>
-        <% } %>
-    </div>
+        <h1 class="container mt-5">All Exercises</h1>
+        <div class="container mt-5">
+            <div class="container mt-5">
+                <% if (exercises.length> 0) { %>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Video Link</th>
+                                <th>Weight</th>
+                                <th>Reps</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% exercises.forEach((exercise)=> { %>
+                                <tr>
+                                    <td>
+                                        <%= exercise.type %>
+                                    </td>
+                                    <td>
+                                        <%= exercise.video_link %>
+                                    </td>
+                                    <td>
+                                        <%= exercise.weight %>
+                                    </td>
+                                    <td>
+                                        <%= exercise.reps %>
+                                    </td>
+                                    <td><button class="btn btn-primary add-to-favorites"
+                                            data-exercise-id="<%= exercise.exercise_id %>">Add to Favorites</button>
+                                    </td>
+                                </tr>
+                                <% }); %>
+                        </tbody>
+                    </table>
+                    <% } else { %>
+                        <p>No exercises found</p>
+                        <% } %>
+            </div>
+        </div>
+
+        <div class="container mt-5">
+            <a href="/profile" class="btn btn-primary">Profile</a>
+            <a href="/profile/favorite-exercises" class="btn btn-primary">Favorite Exercises</a>
+        </div>
+
+        <script>
+            const addToFavoritesButtons = document.querySelectorAll('.add-to-favorites');
+            addToFavoritesButtons.forEach(button => {
+                button.addEventListener('click', async () => {
+                    const exerciseId = button.dataset.exerciseId;
+                    try {
+                        const response = await fetch(`/profile/exercise/${exerciseId}/favorite`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${getCookie('jwt')}` // Get JWT token from cookies
+                            }
+                        });
+                        if (response.ok) {
+                            alert('Exercise added to favorites successfully');
+                        } else {
+                            const errorMessage = await response.json();
+                            alert(errorMessage.message);
+                        }
+                    } catch (error) {
+                        console.error(error);
+                        alert('An error occurred while adding exercise to favorites');
+                    }
+                });
+            });
+
+            // Function to get cookie value by name
+            function getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+            }
+        </script>
 </body>
+
 </html>

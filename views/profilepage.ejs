@@ -15,14 +15,16 @@
 
     <div class="container mt-5">
         <h1>Welcome to Your Profile</h1>
-        <h3><%= user.username %></h3>
-        <h3>You are <%= user.user_id %> user on this site</h3>
-
-        
     </div>
+        <h3 class="container mt-5"><%= user.username %></h3>
+        <h3 class="container mt-5">You are <%= user.user_id %> user on this site</h3>
+    
     <div class="container mt-5">
+        <a href="/" class="btn btn-primary">Home Page</a>-
         <a href="/profile/meal" class="btn btn-primary">View Meals</a>-
         <a href="/profile/exercise" class="btn btn-primary">View Exercises</a>
+        <a href="/profile/userinfo" class="btn btn-primary">View personal info</a>
+        <a href="/profile/userinfo/edit" class="btn btn-primary">Edit personal info</a>
     </div>
 </body>
 

@@ -66,7 +66,7 @@ exports.login = async (req, res) => {
         res.cookie('jwt', token, {
             expires: new Date(Date.now() + parseInt(process.env.JWT_COOKIE_EXPIRES)),
             httpOnly: true,
-            secure: true // Set to true in production if using HTTPS
+            secure: process.env.NODE_ENV === 'production' // Set to true in production if using HTTPS
         });
 
         // Redirect to profile page with custom title

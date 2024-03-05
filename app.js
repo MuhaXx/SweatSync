@@ -18,7 +18,7 @@ app.use(express.static(publicDir));
 app.set('view engine', 'ejs'); // Set EJS as the view engine
 app.set('views', path.join(__dirname, 'views'));
 
-app.listen(5000, () => {
+app.listen(5000, '0.0.0.0', () => {
     console.log("Server started on port 5000");
 });
 
