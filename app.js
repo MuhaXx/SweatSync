@@ -23,13 +23,12 @@ app.listen(5000, () => {
 });
 
 app.get("/", (req, res) => {
-    res.render("index", { title: "Home" });
+    res.render("index", { title: "SweatSync" });
 });
 
 app.get("/register", (req, res) => {
     res.render("register", { title: "Register" });
 });
-
 
 app.get("/login", (req, res) => {
     res.render("login", { title: "Login" });

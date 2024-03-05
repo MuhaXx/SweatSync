@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+<body>
+    <%- include('partials/navbar') %>
+    <div class="container mt-5">
+        <h1>All Meals</h1>
+        <% if (meals.length > 0) { %>
+            <ul class="list-group">
+                <% meals.forEach((meal) => { %>
+                    <li class="list-group-item"><%= meal.name %> - <%= meal.description %> - <%= meal.calories %> calories</li>
+                <% }); %>
+            </ul>
+        <% } else { %>
+            <p>No meals found</p>
+        <% } %>
+    </div>
+</body>
+</html>
