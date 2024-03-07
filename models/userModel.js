@@ -26,6 +26,19 @@ exports.getUserByEmail = async (email) => {
     });
 };
 
+exports.getUserByUsername = async (username) => {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT * FROM user WHERE username = ?', [username], (error, results) => {
+            console.log(username);
+            if (error) {
+                reject(error);
+            } else {
+                resolve(results[0]);
+            }
+        });
+    });
+};
+
 exports.getUserById = async (userId) => {
     return new Promise((resolve, reject) => {
         db.query('SELECT * FROM user WHERE user_id = ?', [userId], (error, results) => {

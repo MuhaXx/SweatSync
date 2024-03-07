@@ -15,10 +15,25 @@ const generateToken = (userId) => {
 exports.register = async (req, res) => {
     // Extract data from request body
     const { username, email, password, password_confirm } = req.body;
-        if (password != password_confirm) {
-            return res.status(401).send({ error: 'Passwords do not match.'});``
-        }
+
+    // Check if passwords match
+    if (password !== password_confirm) {
+        return res.status(400).json({ error: 'Passwords do not match.' });
+    }
+
     try {
+        // Check if a user with the same email already exists
+        const existingEmailUser = await userModel.getUserByEmail(email);
+        if (existingEmailUser) {
+            return res.status(400).json({ error: 'Email is already registered.' });
+        }
+
+        // Check if a user with the same username already exists
+        const existingUsernameUser = await userModel.getUserByUsername(username);
+        if (existingUsernameUser) {
+            return res.status(400).json({ error: 'Username is already taken.' });
+        }
+
         // Hash password
         const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -32,7 +47,7 @@ exports.register = async (req, res) => {
         res.cookie('jwt', token, {
             expires: new Date(Date.now() + parseInt(process.env.JWT_COOKIE_EXPIRES)),
             httpOnly: true,
-            secure: true // Set to true in production if using HTTPS
+            secure: process.env.NODE_ENV // Set to true in production if using HTTPS
         });
 
         // Redirect to profile page with custom title
@@ -42,6 +57,7 @@ exports.register = async (req, res) => {
         res.status(500).json({ message: 'An error occurred while registering the user' });
     }
 };
+
 
 exports.login = async (req, res) => {
     // Extract data from request body
