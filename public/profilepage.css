@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    overflow: hidden;
+    background-color: #343a40;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-attachment: fixed;
+    background-size: 100%;
+    background-blend-mode: darken;
+    height: 100%;
+    width: 100%;
+}
+.footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #495057;
+    text-align: left;
+}
+.btn-primary{
+    color: #d17307;
+    font-size: 17px;
+    text-transform: uppercase;
+  
+    text-decoration: none;
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+  
+    padding: 1% 35px;
+    position: relative;
+    margin: 3%;
+    top: 20px;
+  
+}
