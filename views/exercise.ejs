@@ -7,13 +7,15 @@
     <title>
         <%= title %>
     </title>
+    <link rel="stylesheet" href="/exercise.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 
 <body>
-    <%- include('partials/navbar') %>
-        <h1 class="container mt-5">All Exercises</h1>
+   
+        <h1 class="container1 mt-5">All Exercises</h1>
         <div class="container mt-5">
             <div class="container mt-5">
                 <% if (exercises.length> 0) { %>
@@ -53,11 +55,12 @@
                         <% } %>
             </div>
         </div>
-
-        <div class="container mt-5">
-            <a href="/profile" class="btn btn-primary">Profile</a>
-            <a href="/profile/favorite-exercises" class="btn btn-primary">Favorite Exercises</a>
+        <div class="footer1">
+            <a href="/profile" class="btn-primary"><i class='bx bxs-user-account' style="color: #ED7517;"></i></a>
+            <a href="/profile/favorite-exercises" class="btn-primary"><i class='bx bx-star'style="color: #ED7517;"></i></a>
         </div>
+
+       
 
         <script>
             const addToFavoritesButtons = document.querySelectorAll('.add-to-favorites');

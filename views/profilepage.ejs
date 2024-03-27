@@ -16,19 +16,13 @@
 <body>
     
 
-    <div class="container mt-5">
+    <div class="container">
         <h1>Welcome to Your Profile</h1>
     </div>
-        <h3 class="container mt-5"><%= user.username %></h3>
-        <h3 class="container mt-5">You are <%= user.user_id %> user on this site</h3>
+        <h3 class="user"><%= user.username %></h3>
+        <h3 class="container">You are <%= user.user_id %> user on this site</h3>
     
-    <div class="footer">
-        <a href="/" class="btn-primary"><i class='bx bx-home-alt-2' style="color: #ED7517;"></i></a>
-        <a href="/profile/meal" class="btn-primary"><i class='bx bx-bowl-hot' style="color: #ED7517;"></i></a>
-        <a href="/profile/exercise" class="btn-primary"><i class='bx bx-dumbbell' style="color: #ED7517;"></i></a>
-        <a href="/profile/userinfo" class="btn-primary">View personal info</a>
-        <a href="/profile/userinfo/edit" class="btn-primary">Edit personal info</a>
-    </div>
+        <%- include('partials/footer') %>
 </body>
 
 </html>
