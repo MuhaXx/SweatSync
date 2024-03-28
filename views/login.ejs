@@ -5,70 +5,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/login.css">
-    <title> <%= title %> </title>
+    <title>
+        <%= title %>
+    </title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="icon" href="Icon.png" type="image/png">
 </head>
 
 <body>
-    <div class="container2">
-        <h1>Edit Personal Information</h1>
-    </div>
     <div class="wrapper">
-        <form action="/profile/userinfo/edit" method="POST">
-            <!-- Username -->
+        <form action="/auth/login" method="POST">
+
+            <img src="Logo.png">
+
             <div class="input-box">
-                <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username" name="username" value="<%= user.username %>"
-                    required>
+                <!-- Add the name attribute for email -->
+                <input type="text" name="email" placeholder="email" required>
+                <i class='bx bxs-user' style="color: #ED7517;"></i>
             </div>
-            <!-- Email -->
+
             <div class="input-box">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" value="<%= user.email %>" required>
+                <!-- Add the name attribute for password -->
+                <input type="password" name="password" placeholder="password" required>
+                <i class='bx bxs-lock-alt' style="color: #ED7517;"></i>
             </div>
-            <!-- Age -->
-            <div class="input-box">
-                <label for="age" class="form-label">Age</label>
-                <input type="number" class="form-control" id="age" name="age" value="<%= user.age %>" required>
+
+            <div class="remember-forgot">
+                <a href="/auth/forgot-password"> Forgot password </a>
             </div>
-            <!-- Gender -->
-            <div class="input-box">
-                <label for="gender" class="form-label">Gender</label>
-                <select class="form-select" id="gender" name="gender" required>
-                    <option value="male" <%=user.gender==='male' ? 'selected' : '' %>>Male</option>
-                    <option value="female" <%=user.gender==='female' ? 'selected' : '' %>>Female</option>
-                </select>
+
+            <button type="submit" class="btn"> Log in </button>
+
+            <div class="register-link">
+                <p> Don't have an account ? <a href="/register"> Register </a></p>
             </div>
-            <!-- Weight -->
-            <div class="input-box">
-                <label for="weight" class="form-label">Weight (kg)</label>
-                <input type="number" class="form-control" id="weight" name="weight" value="<%= user.weight %>"
-                    required>
-            </div>
-            <!-- Height -->
-            <div class="input-box">
-                <label for="height" class="form-label">Height (cm)</label>
-                <input type="number" class="form-control" id="height" name="height" value="<%= user.height %>"
-                    required>
-            </div>
-            <!-- Experience -->
-            <div class="input-box">
-                <label for="experience" class="form-label">Experience</label>
-                <select class="form-select" id="experience" name="experience" required>
-                    <option value="beginner" <%=user.experience==='beginner' ? 'selected' : '' %>>Beginner</option>
-                    <option value="intermediate" <%=user.experience==='intermediate' ? 'selected' : '' %>>Intermediate
-                    </option>
-                    <option value="advanced" <%=user.experience==='advanced' ? 'selected' : '' %>>Advanced</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
-    <div class="footer">
-        <%- include('partials/footer') %>
-    </div>
-    
+
 </body>
 
 </html>
