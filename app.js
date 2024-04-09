@@ -34,6 +34,19 @@ app.get("/login", (req, res) => {
     res.render("login", { title: "Login" });
 });
 
+app.get("/admin", (req, res) => {
+    res.render("admin", { title: "Admin" });
+});
+
+app.get("/adminex", (req, res) => {
+    res.render("adminex", { title: "Admin excercises" });
+});
+
+app.get("/admindash", (req, res) => {
+    res.render("admindash", { title: "Admin dashboard" });
+});
+
+
 app.use(profileRoutes);
 
 app.use('/auth', authRoutes);

@@ -1,7 +1,6 @@
 .footer{
-    background-color: white;
-    width: 70%;
-    margin-left: 13%;
+    background-color: #343A40;
+    width: 100%;
     height: auto;
     padding: 10px; 
     position: fixed;
@@ -12,6 +11,7 @@
 
 }
 .btn-primary{
-   font-size: 37px; 
+   font-size: 30px; 
    margin: 8%;
+   align-items: center;
 }

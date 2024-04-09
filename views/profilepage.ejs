@@ -17,11 +17,9 @@
     
 
     <div class="container">
-        <h1>Welcome to Your Profile</h1>
+        <h1 class="welcome">Welcome to Your Profile</h1>
     </div>
-        <h3 class="user"><%= user.username %></h3>
-        <h3 class="container">You are <%= user.user_id %> user on this site</h3>
-    
+    <div class="user"><%= user.username %></div>
         <%- include('partials/footer') %>
 </body>
 
