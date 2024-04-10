@@ -25,4 +25,15 @@ exports.getFavoriteExercises = async (userId) => {
     }
 };
 
-
+exports.deleteExerciseById = async (exerciseId) => {
+    try {
+        const query = 'DELETE FROM exercise WHERE exercise_id = ?';
+        const [result] = await db.query(query, [exerciseId]);
+        if (result.affectedRows === 0) {
+            throw new Error('Exercise not found');
+        }
+        return { message: 'Exercise deleted successfully' };
+    } catch (error) {
+        throw error;
+    }
+};

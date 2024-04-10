@@ -1,24 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin exercises</title>
+    <title>Admin Exercises</title>
     <link rel="stylesheet" href="/adminex.css">
 </head>
+
 <body>
     <div class="container">
-    <div class="vjezba">
-        <p>Naziv</p>
-        <p>Kilaža</p>
-        <p>Ponavljanja</p>
-        <p>link</p>
-        <button>-</button>
+        <% if (exercises.length> 0) { %>
+            <% exercises.forEach(exercise=> { %>
+                <div class="vjezba" data-exercise-id="<%= exercise.id %>">
+                    <p>Naziv: <%= exercise.name %>
+                    </p>
+                    <p>Kilaža: <%= exercise.weight %>
+                    </p>
+                    <p>Ponavljanja: <%= exercise.reps %>
+                    </p>
+                    <p><a style="text-decoration: none;" href="<%= exercise.video_link %>">Video of Exercise</a></p>
+                    <button class="delete-btn">-</button>
+                </div>
+                <% }); %>
+                    <% } else { %>
+                        <p>No exercises found</p>
+                        <% } %>
+
+                            <div class="plus">
+                                <p>+</p>
+                            </div>
+
+                            <!-- Popup form -->
+                            <div id="addExerciseModal" class="modal">
+                                <div class="modal-content">
+                                    <span class="close">&times;</span>
+                                    <form id="addExerciseForm" action="/admin/exercise" method="POST">
+                                        <input type="text" name="name" placeholder="Exercise Name" required>
+                                        <input type="text" name="weight" placeholder="Weight" required>
+                                        <input type="text" name="reps" placeholder="Reps" required>
+                                        <input type="text" name="video_link" placeholder="Video Link" required>
+                                        <button type="submit">Add Exercise</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <script>
+                                // Get the modal
+                                var modal = document.getElementById('addExerciseModal');
+
+                                // Get the button that opens the modal
+                                var btn = document.querySelector('.plus');
+
+                                // Get the <span> element that closes the modal
+                                var span = document.getElementsByClassName("close")[0];
+
+                                // When the user clicks the button, open the modal 
+                                btn.onclick = function () {
+                                    modal.style.display = "block";
+                                }
+
+                                // When the user clicks on <span> (x), close the modal
+                                span.onclick = function () {
+                                    modal.style.display = "none";
+                                }
+
+                                // When the user clicks anywhere outside of the modal, close it
+                                window.onclick = function (event) {
+                                    if (event.target == modal) {
+                                        modal.style.display = "none";
+                                    }
+                                }
+                            </script>
+                            <script>
+                                document.addEventListener('DOMContentLoaded', () => {
+                                    const deleteButtons = document.querySelectorAll('.delete-btn');
+                                    deleteButtons.forEach(button => {
+                                        button.addEventListener('click', async () => {
+                                            const exerciseId = button.parentElement.dataset.exerciseId;
+                                            try {
+                                                const response = await fetch(`/admin/exercise/${exerciseId}`, {
+                                                    method: 'DELETE'
+                                                });
+                                                if (response.ok) {
+                                                    // Remove the exercise element from the UI
+                                                    button.parentElement.remove();
+                                                    alert('Exercise deleted successfully.');
+                                                } else {
+                                                    const errorMessage = await response.json();
+                                                    alert(errorMessage.message);
+                                                }
+                                            } catch (error) {
+                                                console.error(error);
+                                                alert('An error occurred while deleting the exercise.');
+                                            }
+                                        });
+                                    });
+                                });
+                            </script>
     </div>
-    
-    <div class="plus">
-        <p>+</p>
-    </div>
-</div>
 </body>
+
 </html>

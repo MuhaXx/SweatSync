@@ -1,6 +1,6 @@
 const userModel = require('../models/userModel');
-const mealModel = require('../models/mealModel'); // Import the meal model
-const exerciseModel = require('../models/exerciseModel'); // Import the exercise model
+const mealModel = require('../models/mealModel');
+const exerciseModel = require('../models/exerciseModel');
 const favoriteModel = require('../models/favoriteModel');
 
 exports.profilepage = async (req, res) => {
