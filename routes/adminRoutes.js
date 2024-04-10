@@ -21,8 +21,8 @@ router.get("/exercise", (req, res) => {
     res.render("adminex", { title: "Admin excercises" });
 });
 
-router.get("/meal", (req, res) => {
-    res.render("adminmeal", { title: "Admin excercises" });
+router.get("/meals", (req, res) => {
+    res.render("adminmeals", { title: "Admin excercises" });
 });
 
 router.get('/logout', adminController.logout);
