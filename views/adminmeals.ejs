@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Meals</title>
+    <link rel="stylesheet" href="/adminex.css">
+</head>
+
+<body>
+    <div class="container">
+        <% if (meals.length> 0) { %>
+            <% meals.forEach(meal=> { %>
+                <div class="vjezba">
+                    <p>Name: <%= meal.name %>
+                    </p>
+                    <p>Description: <%= meal.description %>
+                    </p>
+                    <p>Calories: <%= meal.calories %>
+                    </p>
+                    <a href="/admin/meal/<%= meal.id %>" class="delete-btn">
+                        <button>-</button>
+                    </a>
+                </div>
+                <% }); %>
+                    <% } else { %>
+                        <p>No meals found</p>
+                        <% } %>
+
+                            <div class="plus">
+                                <p>+</p>
+                            </div>
+
+                            <div id="addMealModal" class="modal">
+                                <div class="modal-content">
+                                    <span class="close">&times;</span>
+                                    <form id="addMealForm" action="/admin/meals" method="POST">
+                                        <input type="text" name="name" placeholder="Meal Name" required>
+                                        <input type="text" name="description" placeholder="Description" required>
+                                        <input type="number" name="calories" placeholder="Calories" required>
+                                        <button type="submit">Add Meal</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <script>
+                                var modal = document.getElementById('addMealModal');
+
+                                var btn = document.querySelector('.plus');
+
+                                var span = document.getElementsByClassName("close")[0];
+
+                                btn.onclick = function () {
+                                    modal.style.display = "block";
+                                }
+
+                                span.onclick = function () {
+                                    modal.style.display = "none";
+                                }
+
+                                window.onclick = function (event) {
+                                    if (event.target == modal) {
+                                        modal.style.display = "none";
+                                    }
+                                }
+                            </script>
+    </div>
+</body>
+
+</html>

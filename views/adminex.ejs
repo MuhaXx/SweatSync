@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Exercises</title>
+    <link rel="stylesheet" href="/adminex.css">
+</head>
+
+<body>
+    <div class="container">
+        <% if (exercises.length> 0) { %>
+            <% exercises.forEach(exercise=> { %>
+                <div class="vjezba">
+                    <p>Naziv: <%= exercise.name %>
+                    </p>
+                    <p>Kilaža: <%= exercise.weight %>
+                    </p>
+                    <p>Ponavljanja: <%= exercise.reps %>
+                    </p>
+                    <p><a style="text-decoration: none;" href="<%= exercise.video_link %>">Video of Exercise</a></p>
+                    <a href="/admin/exercise/<%= exercise.id %>" class="delete-btn">
+                        <button>-</button>
+                    </a>
+                </div>
+                <% }); %>
+                    <% } else { %>
+                        <p>No exercises found</p>
+                        <% } %>
+
+                            <div class="plus">
+                                <p>+</p>
+                            </div>
+
+                            <div id="addExerciseModal" class="modal">
+                                <div class="modal-content">
+                                    <span class="close">&times;</span>
+                                    <form id="addExerciseForm" action="/admin/exercise" method="POST">
+                                        <input type="text" name="name" placeholder="Exercise Name" required>
+                                        <input type="text" name="weight" placeholder="Weight" required>
+                                        <input type="text" name="reps" placeholder="Reps" required>
+                                        <input type="text" name="video_link" placeholder="Video Link" required>
+                                        <button type="submit">Add Exercise</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <script>
+                                var modal = document.getElementById('addExerciseModal');
+
+                                var btn = document.querySelector('.plus');
+
+                                var span = document.getElementsByClassName("close")[0];
+
+                                btn.onclick = function () {
+                                    modal.style.display = "block";
+                                }
+
+                                span.onclick = function () {
+                                    modal.style.display = "none";
+                                }
+
+                                window.onclick = function (event) {
+                                    if (event.target == modal) {
+                                        modal.style.display = "none";
+                                    }
+                                }
+                            </script>
+
+    </div>
+</body>
+
+</html>

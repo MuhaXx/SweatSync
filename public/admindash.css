@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+
+body{
+    background-image: url(adminwalp.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-blend-mode: darken;
+    height: 100%;
+    width: 100%;
+    background-attachment: fixed;
+    background-position: center top;
+    font-family: "Oswald", sans-serif;
+}
+
+.container{
+    position: absolute;
+    left: 60vw;
+    top: 10vh;
+    text-align: center;
+    color: white;
+    font-size: 1.5rem;
+}
+
+h1{
+text-transform: uppercase;
+}
+
+.element{
+    margin: 6vh 10vh;
+    padding: 3vh;
+    background-color: #d17307;
+    border-radius: 6vh;
+    font-weight: 500;
+    width: 15vw;
+    cursor: pointer;
+}

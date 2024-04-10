@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/authRoutes');
 const profileRoutes = require('./routes/profileRoutes');
+const adminRoutes = require('./routes/adminRoutes');
 const cookieParser = require('cookie-parser');
 const verifyToken = require('./middleware/authMiddleware');
 
@@ -23,7 +24,7 @@ app.listen(5000, '0.0.0.0', () => {
 });
 
 app.get("/", (req, res) => {
-    res.render("index", { title: "SweatSync" });
+    res.render("index", { title: "SweatSync", user: req.user });
 });
 
 app.get("/register", (req, res) => {
@@ -33,6 +34,8 @@ app.get("/register", (req, res) => {
 app.get("/login", (req, res) => {
     res.render("login", { title: "Login" });
 });
+
+app.use('/admin', adminRoutes);
 
 app.use(profileRoutes);
 

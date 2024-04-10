@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+body{
+    font-family: "Oswald", sans-serif;
+}
+.user{
+    font-size: 1.5rem;
+    color: #ED7517;
+    font-weight: 700;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px 15px 0 0;
+}
+.container{
+    color: #343A40;
+    position: relative;
+    left: -5%;
+    padding-top: 10px;
+}
+
+.welcome{
+    font-size: 5vh;
+}

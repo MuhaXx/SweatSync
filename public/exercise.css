@@ -1,0 +1,29 @@
+.container{
+    font-size: 30px;
+   
+}
+.container1{
+    margin: 50px;     
+    color: #ED7517;
+
+}
+
+.footer1{
+    background-color: white;
+    width: 70%;
+    margin-left: 13%;
+    height: auto;
+    padding: 10px; 
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    border-top: 2px solid #343A40;
+
+
+}
+.btn-primary{
+    margin-left: 30%;
+   font-size: 37px; 
+   margin-top: 8%;
+   margin-bottom: 8%;
+}

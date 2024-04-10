@@ -11,3 +11,15 @@ exports.getAllMeals = async () => {
         });
     });
 };
+
+exports.addMeal = async (name, description, calories) => {
+    return new Promise((resolve, reject) => {
+        db.query('INSERT INTO meals (name, description, calories) VALUES (?, ?, ?)', [name, description, calories], (error, results) => {
+            if (error) {
+                reject(error);
+            } else {
+                resolve(results);
+            }
+        });
+    });
+};

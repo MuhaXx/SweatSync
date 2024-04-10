@@ -7,11 +7,15 @@
 </head>
 
 <body>
-
-    <%- include('partials/navbar') %>
-        <p class="quote">
-            Train hard, <br> stay focused, <br> achieve greatness!
-        </p>
+    <% if (user) { %>
+        <%- include('partials/navbarLogged') %>
+    <% } else { %>
+        <%- include('partials/navbar') %>
+    <% } %>
+    
+    <p class="quote">
+        Train hard, <br> stay focused, <br> achieve greatness!
+    </p>
 </body>
 
 </html>

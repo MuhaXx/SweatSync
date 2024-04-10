@@ -1,0 +1,17 @@
+.footer{
+    background-color: #343A40;
+    width: 100%;
+    height: auto;
+    padding: 10px; 
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    border-top: 2px solid #343A40;
+
+
+}
+.btn-primary{
+   font-size: 30px; 
+   margin: 8%;
+   align-items: center;
+}
