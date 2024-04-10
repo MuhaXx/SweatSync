@@ -25,6 +25,20 @@ exports.getFavoriteExercises = async (userId) => {
     }
 };
 
+exports.createExercise = async (exerciseData) => {
+    return new Promise((resolve, reject) => {
+        const { name, type, video_link, weight, reps } = exerciseData;
+        const query = 'INSERT INTO exercise (name, type, video_link, weight, reps) VALUES (?, ?, ?, ?, ?)';
+        db.query(query, [name, type, video_link, weight, reps], (error, results) => {
+            if (error) {
+                reject(error);
+            } else {
+                resolve(results.insertId);
+            }
+        });
+    });
+};
+
 exports.deleteExerciseById = async (exerciseId) => {
     try {
         const query = 'DELETE FROM exercise WHERE exercise_id = ?';

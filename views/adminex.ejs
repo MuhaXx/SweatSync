@@ -12,7 +12,7 @@
     <div class="container">
         <% if (exercises.length> 0) { %>
             <% exercises.forEach(exercise=> { %>
-                <div class="vjezba" data-exercise-id="<%= exercise.id %>">
+                <div class="vjezba">
                     <p>Naziv: <%= exercise.name %>
                     </p>
                     <p>Kilaža: <%= exercise.weight %>
@@ -20,7 +20,9 @@
                     <p>Ponavljanja: <%= exercise.reps %>
                     </p>
                     <p><a style="text-decoration: none;" href="<%= exercise.video_link %>">Video of Exercise</a></p>
-                    <button class="delete-btn">-</button>
+                    <a href="/admin/exercise/<%= exercise.id %>" class="delete-btn">
+                        <button>-</button>
+                    </a>
                 </div>
                 <% }); %>
                     <% } else { %>
@@ -31,7 +33,6 @@
                                 <p>+</p>
                             </div>
 
-                            <!-- Popup form -->
                             <div id="addExerciseModal" class="modal">
                                 <div class="modal-content">
                                     <span class="close">&times;</span>
@@ -72,32 +73,7 @@
                                     }
                                 }
                             </script>
-                            <script>
-                                document.addEventListener('DOMContentLoaded', () => {
-                                    const deleteButtons = document.querySelectorAll('.delete-btn');
-                                    deleteButtons.forEach(button => {
-                                        button.addEventListener('click', async () => {
-                                            const exerciseId = button.parentElement.dataset.exerciseId;
-                                            try {
-                                                const response = await fetch(`/admin/exercise/${exerciseId}`, {
-                                                    method: 'DELETE'
-                                                });
-                                                if (response.ok) {
-                                                    // Remove the exercise element from the UI
-                                                    button.parentElement.remove();
-                                                    alert('Exercise deleted successfully.');
-                                                } else {
-                                                    const errorMessage = await response.json();
-                                                    alert(errorMessage.message);
-                                                }
-                                            } catch (error) {
-                                                console.error(error);
-                                                alert('An error occurred while deleting the exercise.');
-                                            }
-                                        });
-                                    });
-                                });
-                            </script>
+
     </div>
 </body>
 

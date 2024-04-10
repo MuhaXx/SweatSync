@@ -55,10 +55,10 @@ const Meal = require('../models/mealModel');
 exports.addExercise = async (req, res) => {
     try {
         // Extract exercise data from request body
-        const { name, duration, caloriesBurned } = req.body;
+        const { name,  type, video_link, weight, reps } = req.body;
 
         // Call the function from the Exercise model to create a new exercise
-        const newExercise = await Exercise.createExercise({ name, duration, caloriesBurned });
+        const newExercise = await Exercise.createExercise({ name, type, video_link, weight, reps });
 
         // Send a success response
         res.status(200).json({ message: 'Exercise added successfully', exercise: newExercise });
@@ -91,7 +91,6 @@ exports.exercises = async (req, res) => {
     try {
         // Fetch all exercises from the database
         const exercises = await exerciseModel.getAllExercises();
-
         // Render the exercises page with the exercises data
         res.render("adminex", { title: "Edit Exercises", exercises: exercises });
     } catch (error) {
