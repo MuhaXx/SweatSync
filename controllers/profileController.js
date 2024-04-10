@@ -84,7 +84,7 @@ exports.editUserInfo = async (req, res) => {
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
-
+            
         // Render the edit user info page with user data
         res.render("editUserInfo", { title: "Edit User Info", user: user });
     } catch (error) {

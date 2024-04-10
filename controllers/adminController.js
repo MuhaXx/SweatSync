@@ -69,21 +69,19 @@ exports.addExercise = async (req, res) => {
     }
 };
 
-// Function to add a new meal
+
 exports.addMeal = async (req, res) => {
     try {
-        // Extract meal data from request body
         const { name, description, calories } = req.body;
-
-        // Call the function from the Meal model to create a new meal
-        const newMeal = await Meal.createMeal({ name, description, calories });
+        
+        // Call the model function to add the meal to the database
+        await Meal.addMeal(name, description, calories);
 
         // Send a success response
-        res.status(200).json({ message: 'Meal added successfully', meal: newMeal });
+        res.status(201).json({ message: 'Meal added successfully' });
     } catch (error) {
-        // Handle errors
         console.error(error);
-        res.status(500).json({ message: 'An error occurred while adding meal' });
+        res.status(500).json({ message: 'An error occurred while adding the meal' });
     }
 };
 
@@ -99,6 +97,19 @@ exports.exercises = async (req, res) => {
     }
 };
 
+exports.meals = async (req, res) => {
+    try {
+        // Fetch all meals from the database
+        const meals = await mealModel.getAllMeals();
+
+        // Render the meals page with the meals data
+        res.render("adminmeals", { title: "Meals", meals: meals });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'An error occurred while rendering the meals page' });
+    }
+};
+
 exports.deleteExercise = async (req, res) => {
     const exerciseId = req.params.id;
 
@@ -111,6 +122,7 @@ exports.deleteExercise = async (req, res) => {
         res.status(500).json({ message: 'An error occurred while deleting the exercise.' });
     }
 };
+
 
 
 const generateToken = (email) => {

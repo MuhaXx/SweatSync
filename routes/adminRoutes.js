@@ -18,7 +18,7 @@ router.get('/exercise', adminController.exercises, (req, res) => {
     res.render("adminex", { title: "Admin excercises" });
 });
 
-router.get('/meals', (req, res) => {
+router.get('/meals', adminController.meals,(req, res) => {
     res.render("adminmeals", { title: "Admin excercises" });
 });
 
