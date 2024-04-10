@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/authRoutes');
 const profileRoutes = require('./routes/profileRoutes');
+const adminRoutes = require('./routes/adminRoutes');
 const cookieParser = require('cookie-parser');
 const verifyToken = require('./middleware/authMiddleware');
 
@@ -34,18 +35,10 @@ app.get("/login", (req, res) => {
     res.render("login", { title: "Login" });
 });
 
-app.get("/admin", (req, res) => {
-    res.render("admin", { title: "Admin" });
-});
 
-app.get("/adminex", (req, res) => {
-    res.render("adminex", { title: "Admin excercises" });
-});
 
-app.get("/admindash", (req, res) => {
-    res.render("admindash", { title: "Admin dashboard" });
-});
 
+app.use('/admin', adminRoutes);
 
 app.use(profileRoutes);
 
