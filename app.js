@@ -35,9 +35,6 @@ app.get("/login", (req, res) => {
     res.render("login", { title: "Login" });
 });
 
-
-
-
 app.use('/admin', adminRoutes);
 
 app.use(profileRoutes);
