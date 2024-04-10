@@ -23,7 +23,7 @@ body{
     border: solid;
     border-color: #ED7517;
     border-width: 5px;
-    font-family: "Oswald", sans-serif;
+    font-family: "Oswald", sans-serif; 
 }
 
 .wrapper .input-box{
