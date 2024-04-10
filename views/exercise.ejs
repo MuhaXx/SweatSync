@@ -39,7 +39,7 @@
                                     <%= exercise.type %>
                                 </td>
                                 <td>
-                                    <%= exercise.video_link %>
+                                    <a style="text-decoration: none;" href="<%= exercise.video_link %>">Video Link</a>
                                 </td>
                                 <td>
                                     <%= exercise.weight %>
@@ -76,7 +76,7 @@
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${getCookie('jwt')}` // Get JWT token from cookies
+                            'Authorization': `Bearer ${getCookie('jwt')}`
                         }
                     });
                     if (response.ok) {
@@ -92,7 +92,6 @@
             });
         });
 
-        // Function to get cookie value by name
         function getCookie(name) {
             const value = `; ${document.cookie}`;
             const parts = value.split(`; ${name}=`);

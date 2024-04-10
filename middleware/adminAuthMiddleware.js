@@ -1,5 +1,3 @@
-// middleware/adminAuthMiddleware.js
-
 const jwtUtils = require('../utils/jwtUtils');
 
 const authenticateAdmin = (req, res, next) => {
@@ -13,7 +11,7 @@ const authenticateAdmin = (req, res, next) => {
         if (decoded.role !== 'admin') {
             throw new Error('Unauthorized');
         }
-        
+
         req.admin = decoded;
         next();
     } catch (error) {
