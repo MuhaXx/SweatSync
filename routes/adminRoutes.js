@@ -17,11 +17,11 @@ router.get('/dashboard', (req, res) => {
     res.render('admindash', { title: "Dashboard" });
 });
 
-router.get("/exercise", (req, res) => {
+router.get('/exercise', (req, res) => {
     res.render("adminex", { title: "Admin excercises" });
 });
 
-router.get("/meals", (req, res) => {
+router.get('/meals', (req, res) => {
     res.render("adminmeals", { title: "Admin excercises" });
 });
 
