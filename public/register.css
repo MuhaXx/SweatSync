@@ -3,7 +3,7 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    /*box-sizing: border-box;*/
 }
 
 body{
@@ -17,9 +17,8 @@ body{
 .wrapper {
     width: 420px;
     background: #343A40;
-    color: #fff;
+    color: #ffffff;
     padding: 30px 40px;
-    border: solid;
     border-color: #ED7517;
     border-width: 5px;
     font-family: "Oswald", sans-serif;
