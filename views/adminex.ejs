@@ -13,11 +13,11 @@
         <% if (exercises.length> 0) { %>
             <% exercises.forEach(exercise=> { %>
                 <div class="vjezba">
-                    <p>Naziv: <%= exercise.name %>
+                    <p>Name: <%= exercise.name %>
                     </p>
-                    <p>Kilaža: <%= exercise.weight %>
+                    <p>Weight: <%= exercise.weight %>
                     </p>
-                    <p>Ponavljanja: <%= exercise.reps %>
+                    <p>Reps: <%= exercise.reps %>
                     </p>
                     <p><a style="text-decoration: none;" href="<%= exercise.video_link %>">Video of Exercise</a></p>
                     <a href="/admin/exercise/<%= exercise.id %>" class="delete-btn">

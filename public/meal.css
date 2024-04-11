@@ -8,11 +8,13 @@
 
 }
 
-.footer1{
+.footer2{
     background-color: white;
     width: 100%;
+  
     height: auto;
-    padding: 10px;
+    padding: 10px; 
+    padding-left: 400px;
     position: fixed;
     left: 0;
     bottom: 0;
@@ -25,22 +27,4 @@
    font-size: 37px; 
    margin-top: 8%;
    margin-bottom: 8%;
-}
-.add-to-favorites{
-  
-    width: 50%;
-    text-align: center;
-    height: 45px;
-    color: #ffffff;
-    background: #ED7517;
-    border: none;
-    outline: none;
-    border-radius: 40px;
-    cursor: pointer;
-    font-size: 15px;
-
-    margin-left: 25%;
-    font-family: "Oswald", sans-serif;
-    font-weight: 400;
-
 }
